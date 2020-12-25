@@ -1,0 +1,19 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.Container;
+
+public class Main {
+
+	public static void main(String[] args) {
+	     JFrame frame = new JFrame("DeliveryClub");
+	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     Container container = frame.getContentPane();
+	     container.setLayout (new FlowLayout(FlowLayout.CENTER));
+	        // добавляем компоненты
+	        container.add( new JButton("Школа"   ));
+	        container.add( new JButton("Институт"));
+	        container.add( new JButton("Академия"));
+	        // Открываем окно
+	    frame.setVisible(true);
+	}
+}

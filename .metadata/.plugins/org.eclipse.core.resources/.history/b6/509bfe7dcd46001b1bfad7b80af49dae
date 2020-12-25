@@ -1,0 +1,15 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class Program {
+
+	public static void main(String[] args) {
+
+	}
+}
+class MainWindow{
+	JFrame frame = new JFrame("DeliveryClub");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(250, 500);
+    frame.setVisible(true);
+}

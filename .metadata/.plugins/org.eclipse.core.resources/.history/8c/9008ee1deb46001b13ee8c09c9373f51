@@ -1,0 +1,230 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Start startProgramm = new Start();
+		startProgramm.startMenu();
+		
+	}
+}
+class Start{
+	ArrayList<String> users = new ArrayList<String>();
+	void startMenu() {
+		int start_menu;
+		System.out.printf("1-Вход\n2-Регистрация\n");
+		Scanner sc = new Scanner(System.in);
+		System.out.printf("Выберите пункт меню: ");
+		start_menu = sc.nextInt();
+		switch(start_menu){
+			case 1:
+				boolean entr = enter();
+				if(entr) {
+					MainMenu userMainMenu = new MainMenu();
+					userMainMenu.showMenu();
+				}else {
+					System.out.println("Зарегистрироваться?");
+					startMenu();
+				}
+				break;
+			case 2:
+				registration();
+				ChooseMenu cMenu = new ChooseMenu();
+				cMenu.chooseMenu();
+				break;
+		}
+	}
+	boolean enter() {
+		String login, password;
+		Scanner sc = new Scanner(System.in);
+		System.out.printf("Введите лоин: \n");
+		login = sc.nextLine();
+		System.out.printf("Введите пароль: \n");
+		password = sc.nextLine();
+		if(this.users.contains(login)){
+			if(this.users.contains(password)){
+				return true;
+	        }else {System.out.printf("Вы ввели неправильный пароль!\n");return false;}
+        }else {System.out.printf("Вы ввели неправильный логин!\n");return false;}
+    }
+	void registration() {
+		String login, password, name, secondname, patronumic, city, street, building, phone;
+		int entrance, floor, flat;
+		Scanner sc = new Scanner(System.in);
+		System.out.printf("Придумайте лоин: \n");
+		login = sc.nextLine();
+		this.users.add(login);
+		System.out.printf("Придумайте пароль: \n");
+		password = sc.nextLine();
+		this.users.add(password);
+		System.out.printf("Введите Имя: \n");
+		name = sc.nextLine();
+		System.out.printf("Введите Фамилию: \n");
+		secondname = sc.nextLine();
+		System.out.printf("Введите Отчество: \n");
+		patronumic = sc.nextLine();
+		System.out.printf("Введите номер телефона: \n");
+		phone = sc.nextLine();
+		System.out.printf("Введите название города: \n");
+		city = sc.nextLine();
+		System.out.printf("Введите название улицы: \n");
+		street = sc.nextLine();
+		System.out.printf("Введите номер дома: \n");
+		building = sc.nextLine();
+		System.out.printf("Введите номер парадной: \n");
+		entrance = sc.nextInt();
+		System.out.printf("Введите этаж: \n");
+		floor = sc.nextInt();
+		System.out.printf("Введите номер квартиры: \n");
+		flat = sc.nextInt();
+		Adress newUserAdress = new Adress(city, street, building, entrance, floor, flat);
+		Person newUser = new Person(login, password, name, secondname, patronumic, phone, newUserAdress);
+		newUser.displayInfo();
+		System.out.printf("\n");
+	}
+}
+class ChooseMenu{
+	ChooseMenu(){};
+	void chooseMenu() {
+		int c_menu;
+		System.out.printf("1-Личный кабинет\n2-Основное меню\n");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Выберите пункт меню: ");
+		c_menu = sc.nextInt();
+		switch(c_menu){
+			case 1:
+				UserMenu uMenu = new UserMenu();
+				uMenu.showMenu();
+				break;
+			case 2:
+				MainMenu uMainMenu = new MainMenu();
+				uMainMenu.showMenu();
+				break;
+		}
+	}
+}
+class MainMenu{
+	void showMenu() {
+		int main_menu;
+		System.out.printf("1-Акции\n2-Магазины\n3-Рестораны\n4-Блюда\n5-Выход\n");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Выберите пункт меню: ");
+		main_menu = sc.nextInt();
+		switch(main_menu){
+			case 1:
+				viewStocks();
+				break;
+			case 2:
+				viewShops();
+				break;
+			case 3:
+				viewRestaurants();
+				break;
+			case 4:
+				viewFood();
+				break;
+			case 5:
+
+				break;
+		}
+	}
+	void viewStocks() {}
+	void viewShops() {}
+	void viewRestaurants() {}
+	void viewFood() {}
+	void exit() {}
+}
+class UserMenu{
+	Person user;
+	void showMenu() {
+		int user_menu;
+		System.out.printf("1-Личные данные\n2-Адреса доставки\n3-Мои заказы\n4-Мои скидки\n5-Выход\n");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Выберите пункт меню: ");
+		user_menu = sc.nextInt();
+		switch(user_menu){
+			case 1:
+				editUser();
+				break;
+			case 2:
+				editAdress();
+				break;
+			case 3:
+				viewOrders();
+				break;
+			case 4:
+				viewDiscounts();
+				break;
+			case 5:
+				exit();
+				break;
+		}
+	}
+	void editUser() {}
+	void editAdress() {}
+	void viewOrders() {}
+	void viewDiscounts() {}
+	void exit() {}
+}
+class Stocks{
+	
+}
+class Store{
+	
+}
+class Product{
+	
+}
+class Person{
+	String login, password;
+	String name, secondname, patronumic;
+	String phone;
+	Adress adress;
+	Person(){
+		name = "Name";
+		secondname= "Secondname";
+		patronumic = "Patronumic";
+		adress = new Adress();
+	}
+	Person(String login, String password, String name, String secondname, String patronumic, String phone, Adress adress){
+		this.login = login;
+		this.password = password;
+		this.name = name;
+		this.secondname = secondname;
+		this.patronumic = patronumic;
+		this.phone = phone;
+		this.adress = adress;
+	}
+	void displayInfo() {
+		System.out.printf("Имя: %s\nФамилия: %s\nОтчество: %s\nТелефон: %s",name, secondname, patronumic, phone);
+		System.out.printf("\n");
+		this.adress.displayInfo();
+	}
+	void editInfo() {
+		
+	}
+}
+class Adress{
+	String city, street, building;
+	int entrance, floor, flat;
+	Adress(){
+		city = "city";
+		street = "street";
+		building = "building";
+	}
+	Adress(String city, String street, String building, int entrance, int floor, int flat){
+		this.city = city;
+		this.street = street;
+		this.building = building;
+		this.entrance = entrance;
+		this.floor = floor;
+		this.flat = flat;
+	}
+	void displayInfo() {
+		System.out.printf("Город: %s\nУлица: %s\nДом: %s\nПарадная: %s\nЭтаж: %s\nКвартира: %s",city, street, building,entrance, floor, flat);
+	}
+	void editInfo() {
+		
+	}
+}

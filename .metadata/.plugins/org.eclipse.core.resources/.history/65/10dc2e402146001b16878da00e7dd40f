@@ -1,0 +1,98 @@
+import javax.swing.*;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+
+//Менеджер вертикального расположения компонентов
+class VerticalLayout implements LayoutManager
+{
+ private Dimension size = new Dimension();
+
+ // Следующие два метода не используются
+ public void addLayoutComponent   (String name, Component comp) {}
+ public void removeLayoutComponent(Component comp) {}
+
+ // Метод определения минимального размера для контейнера
+ public Dimension minimumLayoutSize(Container c) {
+     return calculateBestSize(c);
+ }
+ // Метод определения предпочтительного размера для контейнера
+ public Dimension preferredLayoutSize(Container c) {
+     return calculateBestSize(c);
+ }
+ // Метод расположения компонентов в контейнере
+ public void layoutContainer(Container container)
+ {
+     // Список компонентов
+     Component list[] = container.getComponents();
+     int currentY = 5;
+     for (int i = 0; i < list.length; i++) {
+         // Определение предпочтительного размера компонента
+         Dimension pref = list[i].getPreferredSize();
+         // Размещение компонента на экране
+         list[i].setBounds(5, currentY, pref.width, pref.height);
+         // Учитываем промежуток в 5 пикселов
+         currentY += 5;
+         // Смещаем вертикальную позицию компонента
+         currentY += pref.height;
+     }
+ }
+ // Метод вычисления оптимального размера контейнера
+ private Dimension calculateBestSize(Container c)
+ {
+     // Вычисление длины контейнера
+     Component[] list = c.getComponents();
+     int maxWidth = 0;
+     for (int i = 0; i < list.length; i++) {
+         int width = list[i].getWidth();
+         // Поиск компонента с максимальной длиной
+         if ( width > maxWidth ) 
+             maxWidth = width;
+     }
+     // Размер контейнера в длину с учетом левого отступа
+     size.width = maxWidth + 5;
+     // Вычисление высоты контейнера
+     int height = 0;
+     for (int i = 0; i < list.length; i++) {
+         height += 5;
+         height += list[i].getHeight();
+     }
+     size.height = height;
+     return size;
+ }
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+	     JFrame frame = new JFrame("VerticalLayoutTest");
+	     frame.setSize(400, 600);
+	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     JButton button1 = new JButton("Questions and Answers");
+	     JButton button2 = new JButton("Videos");
+	     JButton button3 = new JButton("Tools");
+	     JButton button4 = new JButton("Tutorials");
+	     JButton button5 = new JButton("Online Compiler");
+	     JButton button6 = new JButton("Quiz");
+	     JPanel contents = new JPanel(new VerticalLayout());
+	     Box box = Box.createVerticalBox();
+	     box.setPreferredSize(new Dimension(900,900));
+	     box.add(button1);
+	     box.add(button2);
+	     box.add(button3);
+	     box.add(button4);
+	     box.add(button5);
+	     box.add(button6);
+	     JScrollPane scrollPane = new JScrollPane();
+	     scrollPane.setViewportView(box);
+	     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	     frame.add(scrollPane, BorderLayout.CENTER);
+	     contents.add(box);
+	     frame.setContentPane(contents);
+	     frame.setVisible(true);
+	}
+}

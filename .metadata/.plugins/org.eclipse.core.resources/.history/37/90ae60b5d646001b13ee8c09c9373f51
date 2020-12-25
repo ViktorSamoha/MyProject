@@ -1,0 +1,52 @@
+
+public class Program {
+
+	public static void main(String[] args) {
+		Person p = new Person();
+		p.displayInfo();
+	}
+
+}
+class Person{
+	String name, secondname, patronumic;
+	int phone;
+	Adress adress;
+	Person(){
+		name = "Name";
+		secondname= "Secondname";
+		patronumic = "Patronumic";
+		adress = new Adress();
+	}
+	Person(String name, String secondname, String patronumic, int phone, Adress adress){
+		this.name = name;
+		this.secondname = secondname;
+		this.patronumic = patronumic;
+		this.phone = phone;
+		this.adress = adress;
+	}
+	void displayInfo() {
+		System.out.printf("Name: %s\tSecondname: %s\nPatronumic: %s\nPhone: %d",name, secondname, patronumic, phone);
+		System.out.printf("\n");
+		this.adress.displayInfo();
+	}
+}
+class Adress{
+	String city, street, building;
+	int entrance, floor, flat;
+	Adress(){
+		city = "city";
+		street = "street";
+		building = "building";
+	}
+	Adress(String city, String street, String building, int entrance, int floor, int flat){
+		this.city = city;
+		this.street = street;
+		this.building = building;
+		this.entrance = entrance;
+		this.floor = floor;
+		this.flat = flat;
+	}
+	void displayInfo() {
+		System.out.printf("City: %s\nStreet: %s\nBuilding: %s\nEntrace: %s\nFloor: %s\nFlat: %s",city, street, building,entrance, floor, flat);
+	}
+}

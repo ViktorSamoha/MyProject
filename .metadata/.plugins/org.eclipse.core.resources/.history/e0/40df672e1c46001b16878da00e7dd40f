@@ -1,0 +1,12 @@
+import javax.swing.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("DeliveryClub");
+		frame.setSize(480, 1280);
+		frame.setVisible(true);
+
+	}
+
+}

@@ -1,0 +1,22 @@
+
+public class Program {
+
+	public static void main(String[] args) {
+		Person p = new Person();
+		p.displayInfo();
+	}
+
+}
+class Person{
+	String name, secondname, patronumic;
+	int phone;
+	Person(){
+		name = "Name";
+		secondname= "Secondname";
+		patronumic = "Patronumic";
+		phone = (Integer) null;
+	}
+	void displayInfo() {
+		System.out.printf("Name: %s\tSecondname: %s\n",name, secondname);
+	}
+}

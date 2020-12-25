@@ -1,0 +1,18 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class Program {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Groups");
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JButton button1 = new JButton("Акции");
+	    Box box = new Box(BoxLayout.X_AXIS);
+	    box.add(button1);
+	    JScrollPane jScrollPane = new JScrollPane();
+	    jScrollPane.setViewportView(box);
+	    frame.add(jScrollPane, BorderLayout.PAGE_START);
+	    frame.setSize(550, 250);
+	    frame.setVisible(true);
+	}
+}
